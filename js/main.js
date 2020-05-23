@@ -13,6 +13,22 @@ const game = () => {
     });
   };
   startGame();
-  
+
+  const toggleHints = () => {
+    const hintsOff = document.querySelector("#hint-btnOff");
+    const hintsOn = document.querySelector("#hint-btnOn");
+    const hintText = document.querySelector(".hint-on-off");
+
+    hintsOff.addEventListener("click", () => {
+      hintText.classList.add("fadeOut");
+      hintText.classList.remove("fadeIn");
+
+    });
+    hintsOn.addEventListener("click", () => {
+      hintText.classList.add("fadeIn");
+      hintText.classList.remove("fadeOut");
+    });
+  };
+  toggleHints();
 };
 game();
