@@ -10,6 +10,10 @@
     margin-left:3rem;
     margin-right:3rem;
 }
+#start-button {
+    opacity: 0;
+    pointer-events: none;
+}
 
 .body-div {
     margin-right: 20%;
@@ -52,3 +56,9 @@
     display: grid;
     grid-auto-flow: column;
 }
+/* .opacity-off {
+    opacity: 0;
+}
+.opacity-on {
+    opacity: 1;
+} */
