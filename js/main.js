@@ -46,19 +46,49 @@ const game = () => {
   };
 
   const compareChoice = (playerChoice, computerChoice) => {
-    const winner = document.getElementById("result");
+    const winner = document.getElementById("results-div");
     const hint = document.querySelector("p #hint");
 
     if (playerChoice === computerChoice) {
-      winner.innerHTML = "<h1>You guessed correctly!!</h1>";
+      winner.innerHTML = `<div id="results-div">
+            <h3>
+              Result: <span id="result">You Guessed Correctly!</span>
+            </h3>
+            <p class="text-muted hint-on-off">
+              <span id="hint"No Hint needed..You're a pro!</span>
+            </p>
+            <button id="hint-btnOff" class="btn btn-dark">OFF</button>
+            <button id="hint-btnOn" class="btn btn-dark">ON</button>
+          </div>`;
+      console.log("thesame");
       return;
     } else if (playerChoice > computerChoice) {
-      winner.innerHTML = "<h1>You guessed incorrectly!!</h1>";
-      hint.innerHTML = `<p id="hint">Computers last guess was more than yours, try guessing lower!</p>`;
+      winner.innerHTML = `<div id="results-div">
+            <h3>
+              Result: <span id="result"></span>
+            </h3>
+            <p class="text-muted hint-on-off">
+              <span id="hint"Computers last guess was more than yours, try guessing lower!</span>
+            </p>
+            <button id="hint-btnOff" class="btn btn-dark">OFF</button>
+            <button id="hint-btnOn" class="btn btn-dark">ON</button>
+          </div>`;
+      console.log("themore");
+
       return;
     } else if (playerChoice < computerChoice) {
-      winner.innerHTML = "<h1>You guessed incorrectly!!</h1>";
-      hint.innerHTML = `<p id="hint">Computers last guess was less than yours, try guessing higher!</p>`;
+      winner.innerHTML = `<div id="results-div">
+            <h3>
+              Result: <span id="result"></span>
+            </h3>
+            <p class="text-muted hint-on-off">
+              <span id="hint"Computers last guess was less than yours, try guessing higher!!</span>
+            </p>
+            <button id="hint-btnOff" class="btn btn-dark">OFF</button>
+            <button id="hint-btnOn" class="btn btn-dark">ON</button>
+          </div>`;
+      console.log("theless");
+
       return;
     }
   };
@@ -69,3 +99,5 @@ const game = () => {
 };
 
 game();
+
+///hints are not working once the p text has been inserted dymanically and does not change once it's been changed once. It just stays the same
