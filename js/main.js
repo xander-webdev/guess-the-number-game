@@ -2,102 +2,89 @@ const game = () => {
   let pScore = 0;
   let gCount = 0;
 
+  //Make start button functional to fade into game screen
   const startGame = () => {
     const startBtn = document.querySelector("#start-button");
-    const btnMain = document.querySelector(".buttons-main-div");
+    const optionBtns = document.querySelector(".buttons-main-div");
 
-    startBtn.addEventListener("click", () => {
+    startBtn.addEventListener("click", function () {
       startBtn.classList.add("fadeOut");
-      btnMain.classList.remove("fadeout");
-      btnMain.classList.add("fadeIn");
+      optionBtns.classList.remove("fadeOut");
+      optionBtns.classList.add("fadeIn");
     });
   };
-
-  const toggleHints = () => {
-    const hintsOff = document.querySelector("#hint-btnOff");
-    const hintsOn = document.querySelector("#hint-btnOn");
-    const hintText = document.querySelector("p #hint");
-
-    hintsOff.addEventListener("click", () => {
-      hintText.classList.add("fadeOut");
-      hintText.classList.remove("fadeIn");
-    });
-    hintsOn.addEventListener("click", () => {
-      hintText.classList.add("fadeIn");
-      hintText.classList.remove("fadeOut");
-    });
-  };
-
-  //play the game
-  const playGame = function () {
+  //add computer options and player options
+  const playGame = () => {
     const options = document.querySelectorAll(".choices");
-    const computerOptions = ["1", "2", "3", "4", "5"];
-    const playerChoice = " ";
+    const computerOption = ["1", "2", "3", "4", "5"];
+    let playerChoice = " ";
 
     options.forEach((option) => {
       option.addEventListener("click", function () {
         const computerNumber = Math.floor(Math.random() * 5);
-        const computerChoice = computerOptions[computerNumber];
-        const playerChoice = option.id;
-
-        compareChoice(playerChoice, compareChoice);
+        const computerChoice = computerOption[computerNumber];
+        let playerChoice = option.id;
+        compareChoice(playerChoice, computerChoice);
       });
     });
   };
+  const updateScore = () => {
+    const playerScore = document.querySelector("#score");
+    const guessCount = document.querySelector("#guesses");
+    playerScore.innerText = pScore;
+    guessCount.innerText = gCount;
+  };
+  //use a function to compare player and computer choice
 
   const compareChoice = (playerChoice, computerChoice) => {
-    const winner = document.getElementById("results-div");
-    const hint = document.querySelector("p #hint");
+    const result = document.querySelector("#result");
+    const hint = document.querySelector("#hint");
+    //and determine the winner and push to score board
 
     if (playerChoice === computerChoice) {
-      winner.innerHTML = `<div id="results-div">
-            <h3>
-              Result: <span id="result">You Guessed Correctly!</span>
-            </h3>
-            <p class="text-muted hint-on-off">
-              <span id="hint"No Hint needed..You're a pro!</span>
-            </p>
-            <button id="hint-btnOff" class="btn btn-dark">OFF</button>
-            <button id="hint-btnOn" class="btn btn-dark">ON</button>
-          </div>`;
-      console.log("thesame");
+      hint.innerText = `It was the same! Well Done!`;
+      result.innerText = `You win!`;
+      pScore++;
+      gCount++;
+      return;
+      updateScore();
+    } else if (playerChoice < computerChoice) {
+      hint.innerText = `It was low. Your guess was ${playerChoice} and the Computer's guess was ${computerChoice}`;
+      result.innerText = `You lose!`;
+      gCount++;
+      updateScore();
       return;
     } else if (playerChoice > computerChoice) {
-      winner.innerHTML = `<div id="results-div">
-            <h3>
-              Result: <span id="result"></span>
-            </h3>
-            <p class="text-muted hint-on-off">
-              <span id="hint"Computers last guess was more than yours, try guessing lower!</span>
-            </p>
-            <button id="hint-btnOff" class="btn btn-dark">OFF</button>
-            <button id="hint-btnOn" class="btn btn-dark">ON</button>
-          </div>`;
-      console.log("themore");
-
-      return;
-    } else if (playerChoice < computerChoice) {
-      winner.innerHTML = `<div id="results-div">
-            <h3>
-              Result: <span id="result"></span>
-            </h3>
-            <p class="text-muted hint-on-off">
-              <span id="hint"Computers last guess was less than yours, try guessing higher!!</span>
-            </p>
-            <button id="hint-btnOff" class="btn btn-dark">OFF</button>
-            <button id="hint-btnOn" class="btn btn-dark">ON</button>
-          </div>`;
-      console.log("theless");
-
+      hint.innerText = `It was high. Your guess was ${playerChoice} and the Computer's guess was ${computerChoice}`;
+      result.innerText = `You lose!`;
+      gCount++;
+      updateScore();
       return;
     }
   };
+  const toggleHints = () => {
+    const hints = document.querySelector("#hint");
+    const hintOn = document.querySelector("#hint-btnOff");
+    const hintOff = document.querySelector("#hint-btnOn");
 
-  toggleHints();
+    hintOn.addEventListener("click", function () {
+        hints.classList.add("fadeIn");
+        hints.classList.remove("fadeOut");
+
+    });
+    hintsOff.addEventListener("click", function(){
+        hints.classList.add("fadeOut");
+        hints.classList.remove("fadeIn")
+    })
+  };
+  
+
   playGame();
+
+  //push hints to the DOM
+
+  //toggle hints on and off
   startGame();
 };
 
 game();
-
-///hints are not working once the p text has been inserted dymanically and does not change once it's been changed once. It just stays the same
