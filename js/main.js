@@ -46,8 +46,8 @@ const game = () => {
       result.innerText = `You win!`;
       pScore++;
       gCount++;
-      return;
       updateScore();
+      return;
     } else if (playerChoice < computerChoice) {
       hint.innerText = `It was low. Your guess was ${playerChoice} and the Computer's guess was ${computerChoice}`;
       result.innerText = `You lose!`;
@@ -62,21 +62,21 @@ const game = () => {
       return;
     }
   };
-  const toggleHints = () => {
-    const hints = document.querySelector("#hint");
-    const hintOn = document.querySelector("#hint-btnOff");
-    const hintOff = document.querySelector("#hint-btnOn");
+//   const toggleHints = () => {
+//     const hints = document.querySelector("#hint");
+//     const hintOn = document.querySelector("#hint-btnOff");
+//     const hintOff = document.querySelector("#hint-btnOn");
 
-    hintOn.addEventListener("click", function () {
-        hints.classList.add("fadeIn");
-        hints.classList.remove("fadeOut");
+//     hintOn.addEventListener("click", function () {
+//         hints.classList.add("fadeIn");
+//         hints.classList.remove("fadeOut");
 
-    });
-    hintsOff.addEventListener("click", function(){
-        hints.classList.add("fadeOut");
-        hints.classList.remove("fadeIn")
-    })
-  };
+//     });
+//     hintsOff.addEventListener("click", function(){
+//         hints.classList.add("fadeOut");
+//         hints.classList.remove("fadeIn")
+//     })
+//   };
   
 
   playGame();
