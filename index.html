@@ -17,12 +17,12 @@
   <body>
     <div id="entire-body">
       <div class="header">
-        <h1>Guess The Number Game </h1>
+        <h1>Guess The Number Game</h1>
         <p>Guess the computer generated number in 10 guesses or less!</p>
         <p>You can choose a number between 1 and 5!</p>
         <div class="score-board">
-          <h2>Guesses: <span id="guesses">0</span></h2>
-          <h2>Your Score: <span id="score">0</span></h2>
+          <h4>Guesses: <span id="guesses">0</span></h4>
+          <h4>Score: <span id="score">0</span></h4>
         </div>
       </div>
 
@@ -30,19 +30,23 @@
         <button id="start-button" class="button-style h3">Start!</button>
 
         <div class="buttons-main-div fadeOut">
-          <button id="1" class="btn btn-dark choices">1</button>
-          <button id="2" class="btn btn-dark choices">2</button>
-          <button id="3" class="btn btn-dark choices">3</button>
-          <button id="4" class="btn btn-dark choices">4</button>
-          <button id="5" class="btn btn-dark choices">5</button>
+          <div class="row">
+            <button id="1" class="btn btn-dark choices col-sm-12">1</button>
+            <button id="2" class="btn btn-dark choices col-sm-12">2</button>
 
+            <button id="3" class="btn btn-dark choices col-sm-12">3</button>
+            <button id="4" class="btn btn-dark choices col-sm-12">4</button>
+            <button id="5" class="btn btn-dark choices col-sm-12">5</button>
+          </div>
           <div id="results-div">
-            <h3>
-              Result: <span id="result"> </span>
-            </h3>
-            <p class="text-muted hint-on-off">
-              <span id="hint">Don't want hints? Click here to disable them!</span>
-            </p>
+            <h3>Result: <span id="result"> </span></h3>
+            <div id="hints-div">
+              <p class="text-muted hint-on-off">
+                <span id="hint"
+                  >Don't want hints? Click here to disable them!</span
+                >
+              </p>
+            </div>
             <button id="hint-btnOff" class="btn btn-dark">OFF</button>
             <button id="hint-btnOn" class="btn btn-dark">ON</button>
           </div>
